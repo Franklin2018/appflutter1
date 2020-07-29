@@ -1,5 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 
 class CameraPage extends StatefulWidget {
   final CameraDescription camera;
@@ -51,6 +53,20 @@ class _CameraPageState extends State<CameraPage> {
               return Center(
                 child: CircularProgressIndicator(),
               );
+            }
+          }),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.camera_alt),
+          onPressed: () async {
+            try {
+              await _initializeControllerFuture;
+              final path = join(
+                (await getTemporaryDirectory()).path,
+                '${DateTime.now()}.png',
+              );
+              await _controller.takePicture(path);
+            } catch (e) {
+              print(e);
             }
           }),
     );
