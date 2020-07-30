@@ -1,6 +1,6 @@
 # appflutter1
 
-A new Flutter project.
+A new Flutter project, para tener acceso a la camara y capturar una fotografia.
 
 ## Getting Started
 
